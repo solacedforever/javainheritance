@@ -2,18 +2,18 @@ package com.company;
 
 import java.time.LocalDateTime;
 
-public class Notification {
+public abstract class Notification {
     private LocalDateTime createdAt;
     private String subject;
     private String body;
-    protected String protect;
+    protected String status;
 
     public Notification(String subject, String body) {
         createdAt = LocalDateTime.now();
         this.subject = subject;
-        this.protect = protect;
+        status = "Normal";
         this.body = body;
-        this.body = protect;
+
     }
 
     public LocalDateTime getCreatedAt() {
@@ -24,11 +24,16 @@ public class Notification {
         return subject;
     }
 
-    public String getBody() {
+    public void setBody(String body) {
+        this.body = body;
+  }
+
+     public String getBody() {
         return body;
     }
-    public void transport() {
-        throw new NoTransportException();
+    public abstract void transport();
+    public void showStatus() {
+      System.out.println("status: " + status);
     }
 
 }
